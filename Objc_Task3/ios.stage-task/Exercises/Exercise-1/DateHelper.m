@@ -63,7 +63,24 @@
 #pragma mark - Fourth
 
 - (BOOL)isDateInThisWeek:(NSDate *)date {
-    return NO;
+    NSCalendar *calender = [NSCalendar currentCalendar];
+    NSDate * actualDate = [NSDate now];
+    
+    NSDateComponents *componentActualWeek = [calender components:NSCalendarUnitWeekOfYear fromDate:actualDate];
+    NSDateComponents *componentsDateWeek = [calender components:NSCalendarUnitWeekOfYear fromDate:date];
+    
+    NSDateComponents *componentsActualYear = [calender components:NSCalendarUnitYear fromDate:actualDate];
+    NSDateComponents *componentsDateYear = [calender components:NSCalendarUnitYear fromDate:date];
+    
+    if ([componentsDateYear year] == [componentsActualYear year]) {
+        if ([componentActualWeek weekOfYear] == [componentsDateWeek weekOfYear]) {
+            return YES;
+        } else {
+            return NO;
+        }
+    } else {
+        return NO;
+    }
 }
 
 @end

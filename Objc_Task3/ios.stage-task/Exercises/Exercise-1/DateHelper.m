@@ -40,7 +40,14 @@
 #pragma mark - Second
 
 - (long)dayFromDate:(NSString *)date {
-    return 0;
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+    
+    NSDate * correctDate = [dateFormatter dateFromString:date];
+    
+    dateFormatter.dateFormat = @"dd";
+    
+    return [[dateFormatter stringFromDate:correctDate] integerValue];
 }
 
 #pragma mark - Third

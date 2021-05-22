@@ -63,7 +63,9 @@
 #pragma mark - Fourth
 
 - (BOOL)isDateInThisWeek:(NSDate *)date {
-    NSCalendar *calender = [NSCalendar currentCalendar];
+    NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    [calender setFirstWeekday:2];
+    
     NSDate * actualDate = [NSDate now];
     
     NSDateComponents *componentActualWeek = [calender components:NSCalendarUnitWeekOfYear fromDate:actualDate];
